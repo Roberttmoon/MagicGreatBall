@@ -32,13 +32,13 @@ namespace MagicGreatBall
                 if (choiceCheck < 8)
                 {
                     int sleeptime = rnd.Next(thirtySeconds, twoMinutes);
-                    Console.WriteLine("shaking 8ball" + sleeptime);
+                    Console.WriteLine("shaking 8ball " + millisecToMin(sleeptime) + " minutes");
                     ShakeEightBall();
                     System.Threading.Thread.Sleep(sleeptime);
                 }
                 else {
                     int restTime = rnd.Next(fourHours, eightHours);
-                    Console.WriteLine("sleeping 5ever: " + restTime);
+                    Console.WriteLine("sleeping 5ever: " + millisecToMin(restTime) + " minutes");
                     System.Threading.Thread.Sleep(restTime);
                 }
             }
@@ -47,6 +47,12 @@ namespace MagicGreatBall
         {
             twitterService.AuthenticateWith(SecretKeys.consumerKey, SecretKeys.consumerSecretKey, SecretKeys.accessToken, SecretKeys.accessSecretToken);
             twitterSearch.Searcher(rnd, twitterService, resources);
+        }
+        float millisecToMin(int millisec)
+        {
+            int sec = millisec / 1000;
+            float min = sec / 60;
+            return min;
         }
     }
 }
