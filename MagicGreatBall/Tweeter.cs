@@ -9,14 +9,9 @@ namespace MagicGreatBall
 {
     public class Tweeter
     {
-        public void Tweet(string msg)
+        public void Tweet(TwitterService twitterService, string msg, long tweetID)
         {
-            var twiterService = new TwitterService(SecretKeys.consumerKey, SecretKeys.consumerSecretKey);
-            twiterService.AuthenticateWith(SecretKeys.accessToken, SecretKeys.accessSecretToken);
-            TwitterStatus result = twiterService.SendTweet(new SendTweetOptions
-            {
-                Status = msg
-            });
+            TwitterStatus result = twitterService.SendTweet(new SendTweetOptions{Status = msg, InReplyToStatusId = tweetID});
         }
     }
 }

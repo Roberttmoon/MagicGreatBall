@@ -9,18 +9,18 @@ namespace MagicGreatBall
 {
     public class TwitterSearch
     {
-        public void Searcher()
+        public void Searcher(Random rnd, TwitterService service, Resources resources)
         {
-            Resources resources = new Resources();
-            var service = new TwitterService(SecretKeys.consumerKey, SecretKeys.consumerSecretKey);
+
+            Tweeter tweeter = new Tweeter();
             service.AuthenticateWith(SecretKeys.accessToken, SecretKeys.accessSecretToken);
-            var options = new SearchOptions { Q = resources.MakeSearchTerm() };
+            SearchOptions options = new SearchOptions { Q = resources.MakeSearchTerm(rnd), Count = 1};
 
             var tweets = service.Search(options);
-
             foreach (var tweet in tweets.Statuses)
             {
-                Console.WriteLine("{0} says '{1}'", tweet.User.ScreenName, tweet.Text);
+                string msg = string.Format("@{0}, {1}", tweet.User.ScreenName, resources.MakeResponce(rnd));
+                tweeter.Tweet(service, msg, tweet.Id);
             }
         }
     }

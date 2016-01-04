@@ -16,11 +16,16 @@ namespace MagicGreatBall
             searchTerms = new List<string>()
             {
                 "why",
-                "will i",
-                "how come",
-                "i wish",
-                "could i",
-                "I'd Like"
+                "\"will i\"",
+                "\"how come\"",
+                "\"i wish\"",
+                "\"could i\"",
+                "\"should i\"",
+                "\"will it\"",
+                "\"what should\"",
+                "\"how could\"",
+                "\"?\"",
+                "\"I'd Like\""
             };
             responces = new List<string>()
             {
@@ -46,17 +51,15 @@ namespace MagicGreatBall
                 "Very doubtful"
             };
         }
-        public string MakeResponce()
+        public string MakeResponce(Random rnd)
         {
             string choice;
-            Random rnd = new Random();
             choice = responces[rnd.Next(responces.Count)];
             return choice;
         }
-        public string MakeSearchTerm()
+        public string MakeSearchTerm(Random rnd)
         {
             string search;
-            Random rnd = new Random();
             search = searchTerms[rnd.Next(searchTerms.Count)];
             return search;
         }

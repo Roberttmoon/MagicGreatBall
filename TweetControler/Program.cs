@@ -11,9 +11,8 @@ namespace TweetControler
     {
         static void Main(string[] args)
         {
-            TwitterSearch search = new TwitterSearch();
-            search.Searcher();
-            Console.ReadLine();
+            TweetMachine tweeter = new TweetMachine();
+            tweeter.TweetMaker();
         }
     }
 }
